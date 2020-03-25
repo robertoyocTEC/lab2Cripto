@@ -3,6 +3,7 @@ from Crypto.Util.Padding import pad
 from socket import socket, SOCK_STREAM, AF_INET
 from base64 import b64encode
 import json
+import time
 
 key = b'mycustom'
 
