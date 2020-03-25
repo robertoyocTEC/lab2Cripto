@@ -13,14 +13,14 @@ cipher = DES.new(key, DES.MODE_CBC)
 
 padded_message = pad(message, 8)
 
-start = time.time()
+start = time.time() * 1000
 print(f'started at {start}')
 encripted = cipher.encrypt(padded_message)
 
-end = time.time()
+end = time.time() * 1000
 print(f'end at {end}')
 
-print(f'time to encript was {end-start} seconds')
+print(f'time to encript was {end-start} miliseconds')
 
 cipher_iv = cipher.iv
 
