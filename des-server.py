@@ -7,6 +7,7 @@ import time
 
 
 key = b'mycustom'
+iv = b'cipheriv'
 
 with socket(AF_INET, SOCK_STREAM) as s:
     s.bind(("", 1100))
@@ -14,16 +15,11 @@ with socket(AF_INET, SOCK_STREAM) as s:
     connection,address = s.accept()
     with connection:
         receipt = connection.recv(1024)
-        utf_message = receipt.decode('utf-8')
-        json_message = json.loads(utf_message)
-        message = b64decode(json_message['message'])
-        iv = b64decode(json_message['iv'])
         cipher = DES.new(key, DES.MODE_CBC, iv)
-
 
         start = time.time()*1000
         print(f'started at {start}')
-        message_decoded = cipher.decrypt(message)
+        message_decoded = cipher.decrypt(receipt)
 
         end = time.time()*1000
         print(f'end at {end}')
