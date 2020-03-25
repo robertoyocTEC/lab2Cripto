@@ -25,7 +25,7 @@ print(f'end at {end}')
 print(f'time to encript was {end-start} miliseconds')
 
 with socket(AF_INET, SOCK_STREAM) as s:
-    s.connect(("192.168.0.10", 1100))
+    s.connect(("192.168.0.6", 1100))
     data = s.send(encripted)
     s.close()
 
