@@ -20,6 +20,6 @@ send = {
 }
 
 with socket(AF_INET, SOCK_STREAM) as s:
-    s.connect(("192.168.0.2", 1100))
+    s.connect(("192.168.0.10", 1100))
     data = s.send(send)
     s.close()
