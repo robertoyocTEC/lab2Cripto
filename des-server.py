@@ -20,13 +20,17 @@ with socket(AF_INET, SOCK_STREAM) as s:
         iv = b64decode(json_message['iv'])
         cipher = DES.new(key, DES.MODE_CBC, iv)
 
+
         start = time.time()*1000
         print(f'started at {start}')
-        message_decoded = unpad(cipher.decrypt(message), 8).decode('utf-8')
+        message_decoded = cipher.decrypt(message)
 
         end = time.time()*1000
         print(f'end at {end}')
         print(f'time to decript was {end-start} miliseconds')
+
+
+        message_unpadded = unpad(message_decoded, 8).decode('utf-8')
 
 
         print("The message was: ", message_decoded)
