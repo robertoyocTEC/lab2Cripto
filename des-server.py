@@ -2,6 +2,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 from Crypto.Cipher import DES
 from Crypto.Util.Padding import unpad
 import json
+from base64 import b64decode
 
 
 
@@ -13,7 +14,7 @@ with socket(AF_INET, SOCK_STREAM) as s:
     connection,address = s.accept()
     with connection:
         receipt = connection.recv(1024)
-        a = json.loads(receipt)
+        a = json.loads(b64decode(receipt))
         
         cipher = DES.new(key, DES.MODE_CBC, a.iv)
         message = unpad(cipher.decrypt(a.message), 8)
