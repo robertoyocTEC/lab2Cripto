@@ -12,8 +12,12 @@ cipher = DES.new(key, DES.MODE_CBC)
 
 padded_message = pad(message, 8)
 
-
+start = time.time()
+print(f'started at {start}')
 encripted = cipher.encrypt(padded_message)
+
+end = time.time()
+print(f'started at {end}')
 
 cipher_iv = cipher.iv
 

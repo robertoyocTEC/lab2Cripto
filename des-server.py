@@ -3,7 +3,7 @@ from Crypto.Cipher import DES
 from Crypto.Util.Padding import unpad
 import json
 from base64 import b64decode
-
+import time
 
 
 key = b'mycustom'
@@ -19,6 +19,13 @@ with socket(AF_INET, SOCK_STREAM) as s:
         message = b64decode(json_message['message'])
         iv = b64decode(json_message['iv'])
         cipher = DES.new(key, DES.MODE_CBC, iv)
+
+        start = time.time()
+        print(f'started at {start}')
         message_decoded = unpad(cipher.decrypt(message), 8).decode('utf-8')
+
+        end = time.time()
+        print(f'started at {end}')
+        
         print("The message was: ", message_decoded)
         connection.close()
