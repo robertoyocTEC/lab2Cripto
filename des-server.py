@@ -25,7 +25,9 @@ with socket(AF_INET, SOCK_STREAM) as s:
         message_decoded = unpad(cipher.decrypt(message), 8).decode('utf-8')
 
         end = time.time()
-        print(f'started at {end}')
-        
+        print(f'end at {end}')
+        print(f'time to encript was {end-start} seconds')
+
+
         print("The message was: ", message_decoded)
         connection.close()

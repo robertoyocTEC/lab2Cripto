@@ -18,7 +18,9 @@ print(f'started at {start}')
 encripted = cipher.encrypt(padded_message)
 
 end = time.time()
-print(f'started at {end}')
+print(f'end at {end}')
+
+print(f'time to encript was {end-start} seconds')
 
 cipher_iv = cipher.iv
 
