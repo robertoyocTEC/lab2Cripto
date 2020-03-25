@@ -26,7 +26,7 @@ with socket(AF_INET, SOCK_STREAM) as s:
 
         end = time.time()
         print(f'end at {end}')
-        print(f'time to encript was {end-start} seconds')
+        print(f'time to decript was {end-start} seconds')
 
 
         print("The message was: ", message_decoded)

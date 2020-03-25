@@ -16,6 +16,7 @@ padded_message = pad(message, 8)
 start = time.time()
 print(f'started at {start}')
 encripted = cipher.encrypt(padded_message)
+time.sleep(1)
 
 end = time.time()
 print(f'end at {end}')
