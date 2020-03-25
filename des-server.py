@@ -33,5 +33,5 @@ with socket(AF_INET, SOCK_STREAM) as s:
         message_unpadded = unpad(message_decoded, 8).decode('utf-8')
 
 
-        print("The message was: ", message_decoded)
+        print("The message was: ", message_unpadded)
         connection.close()
