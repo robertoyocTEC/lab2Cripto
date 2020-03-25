@@ -6,26 +6,28 @@ import json
 
 key = b'mycustom'
 
-message = 'hola como estas soy roberto'
-data = message.encode('ascii')
+message = b'hola como estas soy roberto'
 
 cipher = DES.new(key, DES.MODE_CBC)
 
-padded_message = pad(data, 8)
+padded_message = pad(message, 8)
+
 
 encripted = cipher.encrypt(padded_message)
 
 cipher_iv = cipher.iv
 
 container = {
-    'message': message,
-    'iv': cipher_iv
+    'message': b64encode(encripted).decode('utf-8'),
+    'iv': b64encode(cipher_iv).decode('utf-8')
 }
 
-
-send_encoded = b64encode(json.dumps(container))
+send_encoded = json.dumps(container).encode('ascii')
+print(send_encoded)
 
 with socket(AF_INET, SOCK_STREAM) as s:
     s.connect(("192.168.0.10", 1100))
     data = s.send(send_encoded)
     s.close()
+
+

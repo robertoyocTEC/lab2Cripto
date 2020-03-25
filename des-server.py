@@ -14,9 +14,11 @@ with socket(AF_INET, SOCK_STREAM) as s:
     connection,address = s.accept()
     with connection:
         receipt = connection.recv(1024)
-        a = json.loads(b64decode(receipt))
-        
-        cipher = DES.new(key, DES.MODE_CBC, a.iv)
-        message = unpad(cipher.decrypt(a.message), 8)
-        print("The message was: ", message)
+        utf_message = receipt.decode('utf-8')
+        json_message = json.loads(utf_message)
+        message = b64decode(json_message['message'])
+        iv = b64decode(json_message['iv'])
+        cipher = DES.new(key, DES.MODE_CBC, iv)
+        message_decoded = unpad(cipher.decrypt(message), 8).decode('utf-8')
+        print("The message was: ", message_decoded)
         connection.close()
